@@ -1,0 +1,55 @@
+version: "3.0"
+services:
+  postgres:
+    # container_name: container_postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789Aa-
+      # PGDATA: /data/postgres
+    volumes:
+      - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      # - ./db/data-postgres:/data/postgres
+    networks:
+      - postgres
+    restart: unless-stopped
+    ports:
+      - "5076:5432"
+  
+  pgadmin:
+    # container_name: pgadmin_container
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@email.com
+      PGADMIN_DEFAULT_PASSWORD: 987654321Aa-
+    volumes:
+        - ./db/pgadmin:/root/.pgadmin
+    ports:
+      - "5066:80"
+    networks:
+      - postgres
+      
+  app-movies:
+    image: app-movies
+    container_name: app-movies
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    networks:
+      - postgres
+    ports:
+      - "5065:80"
+    build:
+      context: ../../../
+      dockerfile: ./deploy/docker/app/Dockerfile
+    restart: unless-stopped    
+    env_file: ../../../.docker.env
+  
+  
+  
+networks:
+  postgres:
+    driver: bridge
