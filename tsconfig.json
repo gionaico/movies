@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "module": "commonjs",
+    "target": "ES6",
+    "noImplicitAny": true,
+    "outDir": "./build",
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "lib": [
+      "es2017",
+      "es2015",
+      "dom"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "types": [
+      "jest",
+      "node",
+      "@types/jest"
+    ],
+    "typeRoots": [
+      "../node_modules/@types",
+      "@types/jest"
+    ]
+  },
+  "exclude": [
+    "node_modules/**",
+    "my-project",
+    "learn-typegraphql",
+    "dev",
+    "deploy",
+  ]
+}

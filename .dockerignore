@@ -1,0 +1,10 @@
+node_modules
+dev
+.env
+deploy/docker/db/data-postgres
+deploy/docker/db/data
+deploy/docker/app/db/data-postgres
+deploy/docker/app/db/data
+deploy/docker/app/db
+my-project
+learn-typegraphql

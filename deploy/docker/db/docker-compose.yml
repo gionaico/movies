@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db:
+    image: mariadb
+    restart: "no"
+    ports:
+      - 3524:8080
+    environment:
+      MYSQL_ROOT_PASSWORD: prueba
+      #MYSQL_USER 
+      #MYSQL_PASSWORD
+
+  adminer:
+    image: adminer
+    restart: "no"
+    ports:
+      - 3525:8080
+  
+  phpmyadmin:
+    image: phpmyadmin
+    restart: "no"
+    ports:
+      - 3526:80
+    environment:
+      - PMA_ARBITRARY=1
